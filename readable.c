@@ -3,6 +3,8 @@
 #include <string.h>
 #include <math.h>
 
+const int SCREEN_SIZE = 1760;
+
 int k;
 
 int main() {
@@ -10,15 +12,15 @@ int main() {
   float B = 0;
   float i;
   float j;
-  float z[1760];
-  char b[1760];
+  float z[SCREEN_SIZE];
+  char b[SCREEN_SIZE];
 
   // Clear screen
   printf("\x1b[2J");
 
   for (;;) {
-    memset(b, 32, 1760);
-    memset(z, 0, 7040);
+    memset(b, 32, SCREEN_SIZE);
+    memset(z, 0, SCREEN_SIZE * sizeof(float));
     for (j = 0; 6.28 > j; j += 0.07) {
       for (i = 0; 6.28 > i; i += 0.02) {
 
@@ -49,7 +51,7 @@ int main() {
     printf("\x1b[H");
 
     // Print methof
-    for (k = 0; 1761 > k; k++) {
+    for (k = 0; k < SCREEN_SIZE + 1; k++) {
         putchar(k % 80 ? b[k] : 10);
     }
 
